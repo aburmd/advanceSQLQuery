@@ -59,6 +59,25 @@ where not exists
             (select distinct b.rownm from vw_numbers a, vw_numbers b
                     where a.rownm < b.rownm and mod(b.rownm,a.rownm)=0) np 
                     where al.rownm=np.rownm);
+'''
+4.The PADS
 
+Generate the following two result sets:
 
+Query an alphabetically ordered list of all names in OCCUPATIONS, 
+immediately followed by the first letter of each profession as a parenthetical 
+(i.e.: enclosed in parentheses). For example: AnActorName(A), ADoctorName(D), AProfessorName(P), and ASingerName(S).
+
+Query the number of ocurrences of each occupation in OCCUPATIONS. 
+Sort the occurrences in ascending order, and output them in the following format:
+There are a total of [occupation_count] [occupation]s.
+'''
+
+select res from 
+(select 1 as seq,name||'('||substr(occupation,1,1)||')' as res from occupations
+union all
+select 2 as seq,'There are a total of '||cnt||' '||lower(occupation)||'s.'
+from (select occupation,count(1) as cnt from occupations
+group by occupation) a ) b 
+order by seq,res;
 

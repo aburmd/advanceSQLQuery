@@ -1,4 +1,4 @@
-tableList=['Customer','Orders','Salesperson','Starbucks_Employees','Starbucks_Stores']
+tableList=['Customer','Orders','Salesperson','Starbucks_Employees','Starbucks_Stores','city','Occupations']
 filePath='~/Desktop/DataStore/advanceSQL/data/'
 sqlPath='/Users/abuhura/Desktop/desktop_19thSep2023/Training/workspace/advanceSQLQuery/sql/query.sql'
 
