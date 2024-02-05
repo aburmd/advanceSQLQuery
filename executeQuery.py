@@ -28,4 +28,5 @@ while query!='abort':
     if query=='abort':
         continue
     res=executeQuery(temp_db,query)
-    print(res.all())
+    for r in res.all():
+        print("{} \n".format(r))
