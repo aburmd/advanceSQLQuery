@@ -81,3 +81,56 @@ from (select occupation,count(1) as cnt from occupations
 group by occupation) a ) b 
 order by seq,res;
 
+'''
+5.Occupations
+
+Pivot the Occupation column in OCCUPATIONS so that each Name is sorted alphabetically and displayed underneath its corresponding Occupation. The output column headers should be Doctor, Professor, Singer, and Actor, respectively.
+
+Note: Print NULL when there are no more names corresponding to an occupation.
+
+Input Format
+
+The OCCUPATIONS table is described as follows:
+
+'''
+
+select max(doctor) as doctor,max(professor) as professor,
+        max(singer) as singer,
+        max(actor) as actor
+from 
+(select row_number() over(partition by occupation order by name) as rnk,
+(case when occupation='Doctor' then name else null end) as doctor,
+(case when occupation='Professor' then name else null end) as professor,
+(case when occupation='Singer' then name else null end) as singer,
+(case when occupation='Actor' then name else null end) as actor
+ from occupations) a group by rnk order by rnk;
+
+'''
+6.
+You are given a table, BST, containing two columns: N and P, where N represents the value of a node in Binary Tree, 
+and P is the parent of N.
+
+column,type
+N,integer
+P,integer
+
+Write a query to find the node type of Binary Tree ordered by the value of the node. Output one of the following for each node:
+
+Root: If node is root node.
+Leaf: If node is leaf node.
+Inner: If node is neither root nor leaf node.
+Sample Input
+
+N|P
+1|2
+3|2
+6|8
+9|8
+2|5
+8|5
+5|null
+'''
+
+select n,(case when p is null then 'Root' else 
+            (case when n in (select distinct p from bst) then 'Inner' else 'Leaf' end) end) from bst
+order by n;
