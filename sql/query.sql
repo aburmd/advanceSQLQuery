@@ -1,3 +1,1 @@
-select n,(case when p is null then 'Root' else 
-            (case when n in (select distinct p from bst) then 'Inner' else 'Leaf' end) end) from bst
-order by n;
+select round(cast((abs(min(lat_n)-max(lat_n)) + abs(min(long_w)-max(long_w))) as decimal),4) P1P2_distance from station;
