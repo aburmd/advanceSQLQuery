@@ -1,1 +1,3 @@
-select round(cast((abs(min(lat_n)-max(lat_n)) + abs(min(long_w)-max(long_w))) as decimal),4) P1P2_distance from station;
+select name from students 
+where marks > 75
+order by substr(name,length(name)-2,3),id;
